@@ -2,6 +2,7 @@ require 'sinatra'
 require 'slim'
 require 'sqlite3'
 require 'bcrypt'
+require_relative './model.rb'
 
 enable :sessions
 
@@ -14,5 +15,10 @@ enable :sessions
 get('/') do
     slim(:index)
   end
+
+
+get('/login') do 
+  slim(:login)
+end 
 
 
