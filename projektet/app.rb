@@ -21,4 +21,11 @@ get('/login') do
   slim(:login)
 end 
 
+get('/register') do 
+  slim(:register)
+end 
+
+get('/user/index') do 
+  slim(:"user/index")
+end 
 
