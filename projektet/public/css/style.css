@@ -47,7 +47,53 @@ body header a {
   font-size: 2.5rem;
 }
 
-body .world {
-  font-size: large;
+body main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main .welcome {
+  font-size: 36px;
+  color: black;
+  margin: 2rem 0 2rem 0;
+}
+
+body main .box_login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 0 2rem 0;
+}
+
+body main .box_login a {
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+
+body main .site {
+  margin: 0 0 2rem 0;
+}
+
+body main .site input {
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */
