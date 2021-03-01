@@ -31,12 +31,41 @@ background: white;
     
     }
 
-    .world{
-        font-size: large;
+    main{
+        @include center;
+        flex-direction: column;
+        .welcome{
+            font-size: 36px; 
+            color: black;
+            margin: 2rem 0 2rem 0 ;
 
+        }
+
+        .box_login{
+            display: flex;
+            width: 300px;
+            justify-content: space-around;
+            margin: 0 0 2rem 0 ;
+
+            a{
+                font-size: 24px;
+                text-transform: uppercase;
+                text-decoration: none;
+                color:black;
+            }
+        }
+
+        .site{
+            margin: 0 0 2rem 0;
+            input{
+            font-size: 24px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color:black;
+            }
+        }
 
     }
-
 
 
 
