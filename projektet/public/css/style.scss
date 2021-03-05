@@ -65,6 +65,45 @@ background: white;
             }
         }
 
+        .reg{
+            @include center;
+            flex-direction: column;
+            background: lightsalmon;
+            
+
+            input{
+                margin: .5rem ;
+            }
+        }
+
+        .log{
+            @include center;
+            flex-direction: column;
+            background: lightsalmon;
+            
+
+            input{
+                margin: .5rem ;
+            }
+        }
+
+        .picture_log{
+            width: 15rem;
+            height: 20rem;
+        }
+
+        .box_games{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr) ;
+            width: 40rem;
+            text-align: center;
+
+            .title{
+                grid-column-start: span 2;
+                
+            }
+        }
+
     }
 
 
