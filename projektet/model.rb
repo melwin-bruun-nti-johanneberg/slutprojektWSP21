@@ -16,7 +16,7 @@ def register_user()
     password_digest = BCrypt::Password.create(password)
      db = connect_to_db()
     db.execute("INSERT INTO users (username,pwdigest) VALUES (?,?)",username,password_digest)
-    redirect('/')
+    redirect('/login')
     
   else
     # Fel hantering 
@@ -37,7 +37,7 @@ def login_user()
   
     if BCrypt::Password.new(pwdigest) == password
       session[:id] = result["id"]
-      redirect('/user/index')
+      redirect('/login_user/index')
     else
       "fel lösernord" 
     end
