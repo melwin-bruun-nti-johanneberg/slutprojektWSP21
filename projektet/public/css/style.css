@@ -96,4 +96,65 @@ body main .site input {
   text-decoration: none;
   color: black;
 }
+
+body main .reg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: lightsalmon;
+}
+
+body main .reg input {
+  margin: .5rem;
+}
+
+body main .log {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: lightsalmon;
+}
+
+body main .log input {
+  margin: .5rem;
+}
+
+body main .picture_log {
+  width: 15rem;
+  height: 20rem;
+}
+
+body main .box_games {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  width: 40rem;
+  text-align: center;
+}
+
+body main .box_games .title {
+  -ms-grid-column: span 2;
+      grid-column-start: span 2;
+}
 /*# sourceMappingURL=style.css.map */
