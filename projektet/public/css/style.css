@@ -156,5 +156,14 @@ body main .box_games {
 body main .box_games .title {
   -ms-grid-column: span 2;
       grid-column-start: span 2;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+
+body main .box_games .game_bild {
+  width: 15rem;
+  height: 10rem;
 }
 /*# sourceMappingURL=style.css.map */
