@@ -34,10 +34,18 @@ register_user()
 end 
 
 get('/user/index') do 
+  
   slim(:"user/index")
 end 
 
+get('/user/show') do 
+  slim(:"user/show")
+end 
 
 get('/login_user/index') do 
   slim(:"login_user/index")
+end 
+
+get('/login_user/show') do 
+  slim(:"login_user/show")
 end 
