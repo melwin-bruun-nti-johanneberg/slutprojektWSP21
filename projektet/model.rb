@@ -42,3 +42,11 @@ def login_user()
       "fel lösernord" 
     end
 end 
+
+
+def games_of_the_database()
+  db = connect_to_db()
+  db.results_as_hash = true 
+  return  db.execute("SELECT * FROM title")
+  
+end
