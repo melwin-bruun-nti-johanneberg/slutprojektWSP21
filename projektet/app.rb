@@ -49,3 +49,7 @@ end
 get('/login_user/show') do 
   slim(:"login_user/show")
 end 
+
+get('/login_user/minsida')do 
+  slim(:"login_user/minsida")
+end 
