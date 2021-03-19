@@ -31,6 +31,29 @@ background: white;
     
     }
 
+    nav{
+        @include center;
+        margin: auto;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 1em;
+        font-weight:800;
+        background: lightsalmon;
+        height: 5vh;
+        width: 50rem;
+        flex-direction: row;
+        justify-content: space-around;
+
+        a {
+            @include center;
+            color: black;
+            font-size: 1.5rem
+            
+            
+        }
+
+    }
+
     main{
         @include center;
         flex-direction: column;
