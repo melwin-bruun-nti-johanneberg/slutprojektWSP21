@@ -131,6 +131,8 @@ background: white;
             }
 
             .game_bild{
+                margin: auto;
+                grid-column-start: span 2;
                 width: 15rem;
                 height: 10rem;
             }
