@@ -44,9 +44,19 @@ def login_user()
 end 
 
 
-def games_of_the_database()
+def title()
   db = connect_to_db()
   db.results_as_hash = true 
-  return  db.execute("SELECT * FROM title")
+  result = db.execute("SELECT * FROM title")
+  puts result
+  return result
   
 end
+
+
+
+#SELECT company.name, genre.genres
+	#FROM ((genre_title_relation, company_title_relation
+	#INNER JOIN company ON company_title_relation.company_id = company.id)
+	#INNER JOIN genre ON genre_title_relation.genre_id = genre.id)
+#WHERE title_id = 1
