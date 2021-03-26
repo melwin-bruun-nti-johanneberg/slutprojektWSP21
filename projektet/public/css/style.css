@@ -203,6 +203,9 @@ body main .box_games .title {
 }
 
 body main .box_games .game_bild {
+  margin: auto;
+  -ms-grid-column: span 2;
+      grid-column-start: span 2;
   width: 15rem;
   height: 10rem;
 }
