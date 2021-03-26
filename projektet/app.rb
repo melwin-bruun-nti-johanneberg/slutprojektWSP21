@@ -34,8 +34,9 @@ register_user()
 end 
 
 get('/user/index') do 
+  game = title()
   
-  slim(:"user/index")
+  slim(:"user/index", locals:{game:game})
 end 
 
 get('/user/show') do 
