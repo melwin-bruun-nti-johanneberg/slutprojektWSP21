@@ -40,7 +40,8 @@ get('/user/index') do
 end 
 
 get('/user/show') do 
-  slim(:"user/show")
+  info = game_info()
+  slim(:"user/show", locals:{info:info})
 end 
 
 get('/login_user/index') do 
