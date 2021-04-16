@@ -120,21 +120,24 @@ background: white;
             grid-template-columns: repeat(2, 1fr) ;
             width: 40rem;
             text-align: center;
+            margin: 0 0 1rem 0;
 
             .title{
                 grid-column-start: span 2;
                 font-size: 24px;
                 text-transform: uppercase;
-                text-decoration: none;
                 color:black;
                 
+                
             }
+
+
 
             .game_bild{
                 margin: auto;
                 grid-column-start: span 2;
-                width: 15rem;
-                height: 10rem;
+                width: 28rem;
+                height: 20rem;
             }
         }
 
