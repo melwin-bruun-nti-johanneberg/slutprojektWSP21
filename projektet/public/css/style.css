@@ -191,6 +191,7 @@ body main .box_games {
       grid-template-columns: repeat(2, 1fr);
   width: 40rem;
   text-align: center;
+  margin: 0 0 1rem 0;
 }
 
 body main .box_games .title {
@@ -198,7 +199,6 @@ body main .box_games .title {
       grid-column-start: span 2;
   font-size: 24px;
   text-transform: uppercase;
-  text-decoration: none;
   color: black;
 }
 
@@ -206,7 +206,7 @@ body main .box_games .game_bild {
   margin: auto;
   -ms-grid-column: span 2;
       grid-column-start: span 2;
-  width: 15rem;
-  height: 10rem;
+  width: 28rem;
+  height: 20rem;
 }
 /*# sourceMappingURL=style.css.map */
