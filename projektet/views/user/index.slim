@@ -3,7 +3,7 @@ main
     
     - game.each do |game|
         .box_games
-            a href="/user/show"  class="title"  = game["name"] 
+            a href="/user/show/#{game["id"]}"  class="title" = game["name"] 
             img class="game_bild" src="/misc/#{game["picture_name"]}"
             h3 class="genre" Console: #{game["Console"]}
             h3 class="devolepor" Devoloper: #{game["devoloper"]}
