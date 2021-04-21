@@ -37,7 +37,7 @@ def login_user()
   
     if BCrypt::Password.new(pwdigest) == password
       session[:id] = result["id"]
-      redirect('/login_user/index')
+      redirect('/login_user/:id/index')
     else
       "fel lösernord" 
     end
@@ -53,7 +53,30 @@ def title()
   
 end
 
+def genre_info()
+  id = params[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true 
+  result = db.execute("SELECT * FROM genre_title_relation WHERE title_id = ?",id).first
+  return result
+end 
 
+def game_info()
+  id = params[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true 
+  result = db.execute("SELECT * FROM title WHERE id = ?",id).first
+  return result
+end 
+
+def user_info()
+  db = connect_to_db()
+  db.results_as_hash = true 
+  id = session[:id].to_i
+  result = db.execute("SELECT * FROM users WHERE id = ?",id).first
+  return result
+
+end 
 
 #SELECT company.name, genre.genres
 	#FROM ((genre_title_relation, company_title_relation
