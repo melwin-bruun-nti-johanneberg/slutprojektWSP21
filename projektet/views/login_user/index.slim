@@ -1,14 +1,15 @@
 nav 
-    a href="/login_user/index" Gamepage 
-    a href="/login_user/minsida" Min sida
+    a href="/login_user/:id/index" Gamepage 
+    a href="/login_user/:id/minsida" Min sida
 
 
 
 main
-    h2 Välkomen username, hoppas du hittat vad du letar efter
+    h2 Välkomen #{user["username"]}, hoppas du hittat vad du letar efter
     
-    .box_games
-        a href="/login_user/show"  class="title"  title 
-        img class="game_bild
-        h3 class="genre" genre 
-        h3 class="devolepor" devoloper
+    - game.each do |game|
+        .box_games
+            a href="/user/show"  class="title"  = game["name"] 
+            img class="game_bild" src="/misc/#{game["picture_name"]}"
+            h3 class="genre" Console: #{game["Console"]}
+            h3 class="devolepor" Devoloper: #{game["devoloper"]}
