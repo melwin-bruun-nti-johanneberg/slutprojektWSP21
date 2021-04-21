@@ -35,23 +35,26 @@ end
 
 get('/user/index') do 
   game = title()
-  
+  id = session[:id].to_i
   slim(:"user/index", locals:{game:game})
 end 
 
-get('/user/show') do 
-  info = game_info()
-  slim(:"user/show", locals:{info:info})
+get('/user/show/:id') do 
+  genre = genre_info()
+  game = game_info()
+  slim(:"user/show", locals:{game:game, genre:genre})
 end 
 
-get('/login_user/index') do 
-  slim(:"login_user/index")
+get('/login_user/:id/index') do 
+  game = title()
+  user = user_info()
+  slim(:"login_user/index", locals:{game:game, user:user})
 end 
 
-get('/login_user/show') do 
+get('/login_user/:id/show') do 
   slim(:"login_user/show")
 end 
 
-get('/login_user/minsida')do 
+get('/login_user/:id/minsida') do 
   slim(:"login_user/minsida")
 end 
