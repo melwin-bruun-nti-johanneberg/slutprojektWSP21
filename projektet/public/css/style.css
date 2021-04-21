@@ -200,6 +200,7 @@ body main .box_games .title {
   font-size: 24px;
   text-transform: uppercase;
   color: black;
+  margin: 0 0 1rem 0;
 }
 
 body main .box_games .game_bild {
