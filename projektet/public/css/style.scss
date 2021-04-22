@@ -115,6 +115,26 @@ background: white;
             height: 20rem;
         }
 
+        .info_box{
+            text-align: center;
+
+            .title_info{
+                font-size: 5rem;
+                margin: 2rem 0 2rem 0
+            }
+
+            .bild_info{
+                width: 40rem;
+                height: 30rem;
+            }
+
+            ul{
+               
+                font-size: 1.5rem;
+                width: 20rem;
+            }
+        }
+
         .box_games{
             display: grid;
             grid-template-columns: repeat(2, 1fr) ;
