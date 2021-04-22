@@ -54,10 +54,14 @@ def title()
 end
 
 def genre_info()
-  id = params[:id].to_i
+  title_id = params[:id].to_i
   db = connect_to_db()
   db.results_as_hash = true 
-  result = db.execute("SELECT * FROM genre_title_relation WHERE title_id = ?",id).first
+  result = db.execute("
+    SELECT genre.genres
+    From (genre_title_relation
+      INNER JOIN genre ON genre_title_relation.genre_id = genre.id) 
+    where title_id =?", title_id)
   return result
 end 
 
