@@ -1,18 +1,18 @@
 main 
-
-    h1 #{game['name']}
-
-
-    img src="/misc/#{game["picture_name"]}"
+    .info_box
+        h1 class="title_info" #{game['name']}
 
 
-    h2 Vilka genre dem till hör 
-    /*ul 
-        - genre.each do |genre| 
-            li 
-                p #{genre["genre_id"]}
+        img class="bild_info"  src="/misc/#{game["picture_name"]}"
 
-    h2 Gjort av detta företag #{game["devoloper"]}
 
-    form class="site" action="/user/index"
-        input type="submit" value="Till backa"
+        h2 Gjort av detta företag #{game["devoloper"]}
+
+        h2 Vilka genre dem till hör: 
+       
+        ul   
+            - genre.each do |genre| 
+                li #{genre['genres']}
+
+        form class="site" action="/user/index"
+            input type="submit" value="Till backa"
