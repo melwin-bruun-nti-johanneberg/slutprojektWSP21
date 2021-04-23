@@ -3,6 +3,7 @@ require 'slim'
 require 'sqlite3'
 require 'bcrypt'
 require_relative './model.rb'
+require 'sinatra/flash'
 
 enable :sessions
 
@@ -51,10 +52,20 @@ get('/login_user/:id/index') do
   slim(:"login_user/index", locals:{game:game, user:user})
 end 
 
-get('/login_user/:id/show') do 
-  slim(:"login_user/show")
+
+post('/login_user/show/login_user/save/:id') do 
+  save()
+end 
+
+get('/login_user/show/:id') do 
+  genre = genre_info()
+  game = game_info()
+  user = user_info()
+  slim(:"login_user/show", locals:{game:game, genre:genre, user:user})
 end 
 
 get('/login_user/:id/minsida') do 
-  slim(:"login_user/minsida")
+  user = user_info()
+  slim(:"login_user/minsida", locals:{user:user})
 end 
+
