@@ -124,14 +124,24 @@ background: white;
             }
 
             .bild_info{
-                width: 40rem;
                 height: 30rem;
             }
 
             ul{
                
                 font-size: 1.5rem;
-                width: 20rem;
+                
+            }
+
+            .save{
+                
+                input{
+                font-size: 24px;
+                text-transform: uppercase;
+                text-decoration: none;
+                color:black;
+                margin: 1rem 0 1rem 0;
+            }
             }
         }
 
