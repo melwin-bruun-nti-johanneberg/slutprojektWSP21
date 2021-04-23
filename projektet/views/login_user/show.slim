@@ -1,20 +1,27 @@
 nav 
-    a href="/login_user/:id/index" Gamepage 
-    a href="/login_user/:id/minsida" Min sida
+    a href="/login_user/#{user["id"]}/index" Gamepage 
+    a href="/login_user/#{user["id"]}/minsida" Min sida
 
 
 main 
-
-    h1 title 
-
-
-    img 
+    .info_box
+        h1 class="title_info" #{game['name']}
 
 
-    h2 Vilka genre dem till hör ...
-    h2 Gjort av detta företag ...
+        img class="bild_info"  src="/misc/#{game["picture_name"]}"
 
-    p lägg till på din sida
 
-    form class="site" action="/login_user/index"
-        input type="submit" value="Till backa"
+        h2 Spelet är gjort av detta företag #{game["devoloper"]}.
+
+        h2 Vilka genre dem till hör: 
+       
+        ul   
+            - genre.each do |genre| 
+                li #{genre['genres']}
+
+        form class="save" action="login_user/save/#{game["id"]}" method="post"
+            input type="submit" value="Spara till min sida"
+
+
+        form class="site" action="/login_user/#{user["id"]}/index"
+            input type="submit" value="Till backa"
