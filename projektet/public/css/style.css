@@ -194,13 +194,19 @@ body main .info_box .title_info {
 }
 
 body main .info_box .bild_info {
-  width: 40rem;
   height: 30rem;
 }
 
 body main .info_box ul {
   font-size: 1.5rem;
-  width: 20rem;
+}
+
+body main .info_box .save input {
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+  margin: 1rem 0 1rem 0;
 }
 
 body main .box_games {
