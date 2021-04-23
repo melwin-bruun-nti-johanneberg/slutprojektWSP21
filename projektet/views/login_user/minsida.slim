@@ -1,11 +1,18 @@
 nav 
-    a href="/login_user/:id/index" Gamepage 
-    a href="/login_user/:id/minsida" Min sida
+    a href="/login_user/#{user["id"]}/index" Gamepage 
 
 main 
-    h1 Hej detta är din sida username
-    p Här kan du du se alla dina spel du har sparat i hemsidan 
+    h1 Hej detta är din sida #{user["username"]}
+    p Här kan du du se alla dina spel du har sparat i hemsidan
 
 
-    form class="site" action="/login_user/index"
+    ul 
+
+
+    p Här kan du lägga in spel du vill komma ihåg
+
+
+
+
+    form class="site" action="/login_user/#{user["id"]}/index"
         input type="submit" value="Till backa"
