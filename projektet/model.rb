@@ -37,7 +37,7 @@ def login_user()
   
     if BCrypt::Password.new(pwdigest) == password
       session[:id] = result["id"]
-      redirect('/login_user/:id/index')
+      redirect("/login_user/#{id}/index")
     else
       "fel lösernord" 
     end
@@ -67,6 +67,7 @@ end
 
 def game_info()
   id = params[:id].to_i
+  session[:game_id] = params[:id].to_i
   db = connect_to_db()
   db.results_as_hash = true 
   result = db.execute("SELECT * FROM title WHERE id = ?",id).first
@@ -82,8 +83,28 @@ def user_info()
 
 end 
 
-#SELECT company.name, genre.genres
-	#FROM ((genre_title_relation, company_title_relation
-	#INNER JOIN company ON company_title_relation.company_id = company.id)
-	#INNER JOIN genre ON genre_title_relation.genre_id = genre.id)
-#WHERE title_id = 1
+def save()
+  title_id = 1
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  db.execute("INSERT INTO title_user_rel (title_id,user_id) VALUES (?,?),",title_id,user_id)
+  redirect("/login_user/#{user_id}/minsida")
+
+
+  #spel = db.execute("SELECT * FROM minsida_title_user_rel")
+
+
+
+  #while index < spel.length
+    #if  (title_id = spel['title_id'] || user_id = spel['user_id'])
+     # db.execute("INSERT INTO minsida_title_user_rel (title_id,user_id) VAlUES (?,?),",title_id,user_id)
+     # redirect('/login_user/:id/minsida')
+   # end 
+   # index +=1 
+  # end 
+
+  
+  
+end 
+
