@@ -5,10 +5,10 @@ require 'bcrypt'
 require_relative './model.rb'
 require 'sinatra/flash'
 
+include Model
 enable :sessions
 
 #En furum som visar spel i samma genre och företag som andra spel
-#samt me kommentarar på spelen 
 #många i många databaser 
 
 
@@ -70,7 +70,7 @@ post('/login_user/:id/delete') do
   delete_minsdia() 
 end 
 
-post('/login_user/minsida/new') do 
+post('/login_user/minsida') do 
   new_list()
 end 
 
@@ -89,5 +89,6 @@ post('/login_user/:id/update') do
  update()
 end 
 get('/login_user/minsida/:id/edit') do 
-slim(:"login_user/edit")
+  edit = edit()
+slim(:"login_user/edit", locals:{res:edit})
 end 
