@@ -5,11 +5,30 @@ main
     h1 Hej detta är din sida #{user["username"]}
     p Här kan du du se alla dina spel du har sparat i hemsidan
 
+    ol 
+        - sida.each do |sida| 
+            li
+                p #{sida['name']}  
+                form action="/login_user/#{sida['id_rel']}/delete" method="post"
+                    input type="submit" value="Ta bort"
+     
 
-    ul 
+
+    h3 Här kan du lägga in spel du vill komma ihåg
+
+    from action="/login_user/minsida/new" method="post"
+        input type="text" name="new_game" placeholder="game title"
+        input type="submit" value="Lägg till"
 
 
-    p Här kan du lägga in spel du vill komma ihåg
+    ol  
+        - list.each do |list|
+            li 
+                p #{list['game_title']} 
+                a href="/login_user/minsida/#{list['id']}/edit" Update  
+                form action="/login_user/list/#{list['id']}/delete" method="post"
+                    input type="submit" value="Ta bort"
+
 
 
 
