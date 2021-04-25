@@ -109,6 +109,54 @@ body main .welcome {
   margin: 2rem 0 2rem 0;
 }
 
+body main .new input {
+  font-size: 18px;
+}
+
+body main ol {
+  margin: 0;
+  padding: 0;
+  margin: 1rem 0 2rem 0;
+}
+
+body main ol .list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+}
+
+body main ol .list p {
+  font-size: 20px;
+}
+
+body main ol .list .update {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 18px;
+  margin: 0 1rem 0 1rem;
+}
+
+body main ol .list form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 body main .box_login {
   display: -webkit-box;
   display: -ms-flexbox;
