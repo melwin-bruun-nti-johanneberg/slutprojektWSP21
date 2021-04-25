@@ -3,7 +3,7 @@ nav
 
 main 
     h1 Hej detta är din sida #{user["username"]}
-    p Här kan du du se alla dina spel du har sparat i hemsidan
+    h2  Här kan du du se alla dina spel du har sparat i hemsidan
 
     ol 
         - sida.each do |sida| 
@@ -14,18 +14,18 @@ main
      
 
 
-    h3 Här kan du lägga in spel du vill komma ihåg
+    h2 Här kan du lägga in spel du vill komma ihåg
 
-    from action="/login_user/minsida/new" method="post"
-        input type="text" name="new_game" placeholder="game title"
+    form class="new" action="/login_user/minsida" method="post"
+        input type="text" name="game" placeholder="game title"
         input type="submit" value="Lägg till"
 
 
     ol  
         - list.each do |list|
-            li 
-                p #{list['game_title']} 
-                a href="/login_user/minsida/#{list['id']}/edit" Update  
+            li class="list" 
+                p #{list['id']}. #{list['game']} 
+                a class="update" href="/login_user/minsida/#{list['id']}/edit" Update  
                 form action="/login_user/list/#{list['id']}/delete" method="post"
                     input type="submit" value="Ta bort"
 
