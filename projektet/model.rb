@@ -92,3 +92,63 @@ def save()
   redirect("/login_user/#{user_id}/minsida")
 end 
 
+def saves()
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  result = db.execute("SELECT * 
+    FROM (title_user_rel 
+      INNER JOIN title ON title_user_rel.title_id = title.id)
+      WHERE user_id =?", user_id)
+  return result
+end 
+
+def delete_minsdia() 
+  id = params[:id].to_i
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  db.execute("DELETE FROM  title_user_rel WHERE id_rel = ?",id)
+  redirect("/login_user/#{user_id}/minsida")
+
+end 
+
+
+def new_list()
+  game_title = params[:new_game]
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  db.execute("INSERT INTO user_list (game_title,user_id) VALUES (?,?)",game_title,user_id)
+  redirect("/login_user/#{user_id}/minsida")
+end 
+
+def user_links()
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  res = db.execute('SELECT * FROM user_list WHERE user_id = ?',user_id)
+  return res
+end 
+
+def delete_list()
+
+  id = params[:id].to_i
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  db.execute("DELETE FROM user_list WHERE id = ?",id)
+  redirect("/login_user/#{user_id}/minsida")
+
+
+end 
+
+def update()
+  title = params[:title]
+  id = params[:id].to_i
+  user_id = session[:id].to_i
+  db = connect_to_db()
+  db.results_as_hash = true
+  db.execute('UPDATE user_list SET game_title=? WHERE id = ?',title, id)
+  redirect("/login_user/#{user_id}/minsida")
+end 
