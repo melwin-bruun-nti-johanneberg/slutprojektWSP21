@@ -64,8 +64,30 @@ get('/login_user/show/:id') do
   slim(:"login_user/show", locals:{game:game, genre:genre, user:user})
 end 
 
-get('/login_user/:id/minsida') do 
-  user = user_info()
-  slim(:"login_user/minsida", locals:{user:user})
+
+
+post('/login_user/:id/delete') do 
+  delete_minsdia() 
 end 
 
+post('/login_user/minsida/new') do 
+  new_list()
+end 
+
+get('/login_user/:id/minsida') do 
+  user = user_info()
+  sida = saves()
+  list = user_links()
+  slim(:"login_user/minsida", locals:{user:user, sida:sida, list:list})
+end 
+
+post('/login_user/list/:id/delete') do
+  delete_list()
+end 
+
+post('/login_user/:id/update') do 
+ update()
+end 
+get('/login_user/minsida/:id/edit') do 
+slim(:"login_user/edit")
+end 
