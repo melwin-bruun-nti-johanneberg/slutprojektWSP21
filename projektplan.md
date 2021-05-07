@@ -18,5 +18,23 @@ Mitt ER diagram på hemsidan
 ![ER Diagram](planerings_bilder/er-diagram2.jpg)
 ## 4. Arkitektur (Beskriv filer och mappar - vad gör/innehåller de?).
 
-[Planeringss_bilder] Innehåller alla bilder av planeringen av projektet, samt er digramen de första och den andra mer upptaterade.
+[Planeringss_bilder] => Innehåller alla bilder av planeringen av projektet, samt er digramen de första och den andra mer upptaterade.
+
+[projektet] => Innehåller alla mappar och koder för att arbetet skall kunna fungera.
+
+[projektet\yardoc] => Innehåller en funktioner som gör det enklare för dekumentation för hemsidan. Som sedan gör en automatisk dekumation på den.
+
+[projektet\db] => Innehåller databasen som hemssidan arbetar mot med alla användare och infromation på hemsidan.
+
+[projektet\doc] => Innehåller hör ihop med yardoc vet inte exakt hur den fungerar men den visar sen dukumentaion på en localhost
+
+[projektet\public] => Innehåller alla saker som är publik till allmänheten och sedan har två deperata mappar med olika funtkioner.
+
+[projektet\public\css] => Innehåller alla styling för hemsidan, och för jag använnder mig av scss så finns det lite mer funktioner som gör den mögligt på vilken webbläsare som helst och den kommer se samma ut. för den är intergerar med all olika webbläsare vi har. Där _variables innehåller alla snabb css jag vill ha på sidan så jag skriver mindre kod på stylle.scss. Dem två css är auto genererande från scss då den skriver ut allt jag skriver i style ut i ren css kod som funkar på alla weblässare. Där style.scss är houved css sidan där jag skriver in css koden jag vill ha som sedan generas till ren css kod. 
+
+ [projektet\public\misc] => Innehåller alla bilder som finns på hemsidan och i databasen. 
+
+
+[projektet\app.rb] => Innehåller alla routes i hemsidan och är kontrolpanelen till hemssidan där allt måste gå igenom att de skall fungera. 
+
 
