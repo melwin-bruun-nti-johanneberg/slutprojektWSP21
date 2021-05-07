@@ -15,7 +15,7 @@ Denna bild är på spelet information när man klickar på den
 
 ## 3. Databas med ER-diagram (Bild på ER-diagram).
 Mitt ER diagram på hemsidan och spel 
-![ER Diagram](planerings_bilder/ER_diagram.jpg)
+![ER Diagram](planerings_bilder/er-diagram2.jpg)
 ## 4. Arkitektur (Beskriv filer och mappar - vad gör/innehåller de?).
 
 
