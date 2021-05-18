@@ -38,3 +38,29 @@ Mitt ER diagram på hemsidan
 [projektet\app.rb] => Innehåller alla routes i hemsidan och är kontrolpanelen till hemssidan där allt måste gå igenom att de skall fungera. 
 
 
+[projektet\model.rb] => Innehåller alla fonktioner till hemsidan sammt alla databas anropnigar som händer under sidan gång. 
+
+[projektet\views\index.slim] => är start sidan för hemsidan
+
+[projektet\views\layout.slim] => är naven och houvdbar för alla sidor i hemsidan 
+
+[projektet\views\login.slim] =>  visar login template 
+
+[projektet\views\register.slim] =>  visar register template 
+
+[projektet\views\user\index.slim] =>  visar spelen för som inte loggade in på hemsidan 
+
+[projektet\views\user\show.slim] =>  visar all infromatn för varje spel 
+
+[projektet\views\login_user\index.slim] =>  visar spelen för den som har loggat in 
+
+[projektet\views\login_user\show.slim] =>  visar all infromatn för varje spel 
+
+[projektet\views\login_user\edit.slim] => editar på min sida för ens tankar 
+
+[projektet\views\login_user\minsida.slim] => visar den in loggande speciala sida. 
+
+
+
+
+
