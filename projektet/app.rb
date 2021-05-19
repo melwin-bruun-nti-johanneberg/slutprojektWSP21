@@ -29,7 +29,7 @@ end
 # @param [Integer] :id, the ID of the user
 # @see Model#login_user
 post('/login')do 
-login_user()
+  login_user()
 end 
 
 #Displays a register form
