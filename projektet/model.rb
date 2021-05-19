@@ -1,6 +1,11 @@
 #funktioner för DB databasen 
 module Model
 
+  def initialize
+      @counter = Time.now  
+      @index = 0 
+  end 
+
   #Attempts to connect to databasen 
   # @return [String]
   def connect_to_db()
@@ -47,21 +52,41 @@ module Model
   # @return [Integer] The ID of the user
   # @return [false] if credentials do not match a user
   def login_user()
-      username = params[:username]
-      password = params[:password]
-      db = connect_to_db()
-      db.results_as_hash = true 
-      result = db.execute("SELECT * FROM users WHERE username = ?",username).first
-      pwdigest = result["pwdigest"]
-      id = result["id"]
-    
-      if BCrypt::Password.new(pwdigest) == password
-        session[:id] = result["id"]
-        redirect("/login_user/#{id}/index")
-      else
-        "fel lösernord" 
+
+
+      
+      if(@counter + 120  <= Time.now)
+        if (@index <= 3)
+          username = params[:username]
+          password = params[:password]
+          db = connect_to_db()
+          db.results_as_hash = true 
+          result = db.execute("SELECT * FROM users WHERE username = ?",username).first
+          pwdigest = result["pwdigest"]
+          id = result["id"]
+        
+          if BCrypt::Password.new(pwdigest) == password
+            session[:id] = result["id"]  
+            
+            redirect("/login_user/#{id}/index")
+          else
+            "fel lösernord" 
+            @index += 1 
+          
+          end
+
+        else
+          "För många fel, försök igen om #{counter + 120 - Time.now}"
+        end 
       end
   end 
+
+
+  #if Time.now >= @last_reply_time + 300  #(seconds)
+  # Reply
+  # ...
+ # @last_reply_time = Time.now # update the @last_reply_time last
+#end
 
 
   # Finds all games in the database 
