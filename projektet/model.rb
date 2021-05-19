@@ -1,16 +1,12 @@
 #funktioner för DB databasen 
 module Model
-
-  def initialize
-      @counter = Time.now  
-      @index = 0 
-  end 
-
+ 
   #Attempts to connect to databasen 
   # @return [String]
   def connect_to_db()
-      db = SQLite3::Database.new('db/Database.db')
-      return db 
+    @db = SQLite3::Database.new('db/Database.db')
+    @db.results_as_hash = true 
+      return @db 
 
   end 
 
@@ -31,8 +27,8 @@ module Model
 
     if (password == password_confirm)
       password_digest = BCrypt::Password.create(password)
-      db = connect_to_db()
-      db.execute("INSERT INTO users (username,pwdigest) VALUES (?,?)",username,password_digest)
+      connect_to_db()
+      @db.execute("INSERT INTO users (username,pwdigest) VALUES (?,?)",username,password_digest)
       redirect('/login')
       
     else
@@ -52,33 +48,32 @@ module Model
   # @return [Integer] The ID of the user
   # @return [false] if credentials do not match a user
   def login_user()
+    username = params[:username]
+    password = params[:password]
+    connect_to_db()
+    result = @db.execute("SELECT * FROM users WHERE username = ?",username).first
+    pwdigest = result["pwdigest"]
+    id = result["id"]
 
+    if username.empty? != true  && password.empty? != true
+      if session[:lasttry] == nil || Time.now - session[:lasttry] > 15
 
-      
-      if(@counter + 120  <= Time.now)
-        if (@index <= 3)
-          username = params[:username]
-          password = params[:password]
-          db = connect_to_db()
-          db.results_as_hash = true 
-          result = db.execute("SELECT * FROM users WHERE username = ?",username).first
-          pwdigest = result["pwdigest"]
-          id = result["id"]
-        
-          if BCrypt::Password.new(pwdigest) == password
-            session[:id] = result["id"]  
-            
+        if BCrypt::Password.new(pwdigest) == password
+          session[:id] = result["id"]  
+                  
             redirect("/login_user/#{id}/index")
           else
-            "fel lösernord" 
-            @index += 1 
-          
-          end
+            session[:lasttry] = Time.now
+             "fel lösernord försök igen" 
+                
+        end
+      else 
+        "Cooldown försök igen snart"
+      end 
+    else
+      "du har missat skriva i input simplet"
+    end 
 
-        else
-          "För många fel, försök igen om #{counter + 120 - Time.now}"
-        end 
-      end
   end 
 
 
@@ -99,9 +94,8 @@ module Model
   # * :devoloper [String]  The devolopers of the games
   # @see Model#connect_to_db
   def title()
-    db = connect_to_db()
-    db.results_as_hash = true 
-    result = db.execute("SELECT * FROM title")
+    connect_to_db()
+    result = @db.execute("SELECT * FROM title")
     puts result
     return result
     
@@ -115,9 +109,8 @@ module Model
   # @see Model#connect_to_db
   def genre_info()
     title_id = params[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true 
-    result = db.execute("
+    connect_to_db()
+    result = @db.execute("
       SELECT genre.genres
       From (genre_title_relation
         INNER JOIN genre ON genre_title_relation.genre_id = genre.id) 
@@ -139,9 +132,8 @@ module Model
   def game_info()
     id = params[:id].to_i
     session[:game_id] = params[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true 
-    result = db.execute("SELECT * FROM title WHERE id = ?",id).first
+    connect_to_db()
+    result = @db.execute("SELECT * FROM title WHERE id = ?",id).first
     return result
   end 
 
@@ -156,10 +148,9 @@ module Model
   # * :role [String]  The role of the user
   # @see Model#connect_to_db
   def user_info()
-    db = connect_to_db()
-    db.results_as_hash = true 
     id = session[:id].to_i
-    result = db.execute("SELECT * FROM users WHERE id = ?",id).first
+    connect_to_db()
+    result = @db.execute("SELECT * FROM users WHERE id = ?",id).first
     return result
 
   end 
@@ -173,9 +164,8 @@ module Model
   def save()
     title_id = params[:id].to_i
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    db.execute("INSERT INTO title_user_rel (title_id,user_id) VALUES (?,?)",title_id,user_id)
+    connect_to_db()
+    @db.execute("INSERT INTO title_user_rel (title_id,user_id) VALUES (?,?)",title_id,user_id)
     redirect("/login_user/#{user_id}/minsida")
   end 
   # Finds all games that is saved for the user in the database 
@@ -189,9 +179,8 @@ module Model
   # @see Model#connect_to_db
   def saves()
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    result = db.execute("SELECT * 
+    connect_to_db()
+    result = @db.execute("SELECT * 
       FROM (title_user_rel 
         INNER JOIN title ON title_user_rel.title_id = title.id)
         WHERE user_id =?", user_id)
@@ -210,9 +199,8 @@ module Model
   def delete_minsdia() 
     id = params[:id].to_i
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    db.execute("DELETE FROM  title_user_rel WHERE id_rel = ?",id)
+    connect_to_db()
+    @db.execute("DELETE FROM  title_user_rel WHERE id_rel = ?",id)
     redirect("/login_user/#{user_id}/minsida")
 
   end 
@@ -227,9 +215,8 @@ module Model
   def new_list()
     game_title = params[:game]
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    db.execute("INSERT INTO user_list (game,user_id) VALUES (?,?)",game_title,user_id)
+    connect_to_db()
+    @db.execute("INSERT INTO user_list (game,user_id) VALUES (?,?)",game_title,user_id)
     redirect("/login_user/#{user_id}/minsida")
   end 
 
@@ -245,9 +232,8 @@ module Model
   # @see Model#connect_to_db
   def user_links()
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    res = db.execute('SELECT * FROM user_list WHERE user_id = ?',user_id)
+    connect_to_db()
+    res = @db.execute('SELECT * FROM user_list WHERE user_id = ?',user_id)
     return res
   end 
 
@@ -263,9 +249,8 @@ module Model
 
     id = params[:id].to_i
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    db.execute("DELETE FROM user_list WHERE id = ?",id)
+    connect_to_db()
+    @db.execute("DELETE FROM user_list WHERE id = ?",id)
     redirect("/login_user/#{user_id}/minsida")
 
 
@@ -283,9 +268,8 @@ module Model
     title = params[:title]
     id = params[:id].to_i
     user_id = session[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    db.execute('UPDATE user_list SET game=? WHERE id=?',title, id)
+    connect_to_db()
+    @db.execute('UPDATE user_list SET game=? WHERE id=?',title, id)
     redirect("/login_user/#{user_id}/minsida")
   end 
 
@@ -304,9 +288,8 @@ module Model
   # @see Model#connect_to_db
   def edit()
     id = params[:id].to_i
-    db = connect_to_db()
-    db.results_as_hash = true
-    result = db.execute("SELECT * FROM user_list WHERE id = ?",id).first
+    connect_to_db()
+    result = @db.execute("SELECT * FROM user_list WHERE id = ?",id).first
     return result
   end 
-end 
+end
